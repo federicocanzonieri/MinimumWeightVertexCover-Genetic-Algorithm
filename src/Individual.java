@@ -74,8 +74,8 @@ public class Individual {
 		this.fitness=this.fitness_score(weight);
 	}
 	
-	//CONTROLLO SE LA SOLUZIONE é VALIDA, CONTROLLA SOLO LE RIGHE E COLONNE DEGLI INDICI NON INCLUSI
-	//SE TROVO UN ELEMENTO PARI A =1 NON é UNA VERTEX COVER ALTRIMENTI SI
+	//CONTROLLO SE LA SOLUZIONE e VALIDA, CONTROLLA SOLO LE RIGHE E COLONNE DEGLI INDICI NON INCLUSI
+	//SE TROVO UN ELEMENTO PARI A =1 NON e UNA VERTEX COVER ALTRIMENTI SI
 	public boolean is_valid_solution(int[][] matrix) {
 		ArrayList<Integer>non_inclusive_index=this.get_index_non_inclusive();
 		for(Integer idx:non_inclusive_index) {

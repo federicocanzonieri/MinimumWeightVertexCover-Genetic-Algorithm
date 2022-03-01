@@ -62,8 +62,16 @@ public class GeneticAlgorithm {
         
     	
     	System.out.println(System.getProperty("user.dir"));
-    	run_instance("istanze\\small_instances", "tipo_20_60",1);
-    	
+    	run_instance(".."+ File.separator +"istanze"+ File.separator +"small_instances", "tipo_20_60",1);
+    	/*
+    	run_instance(".."+ File.separator +"istanze"+ File.separator +"small_instances", "tipo_20_120",1);
+		run_instance(".."+ File.separator +"istanze"+ File.separator +"small_instances", "tipo_25_150",1);
+		run_instance(".."+ File.separator +"istanze"+ File.separator +"medium_instances", "tipo_100_500",1);
+		run_instance(".."+ File.separator +"istanze"+ File.separator +"medium_instances", "tipo_100_2000",1);
+		run_instance(".."+ File.separator +"istanze"+ File.separator +"medium_instances", "tipo_200_750",1);
+		run_instance(".."+ File.separator +"istanze"+ File.separator +"medium_instances", "tipo_200_3000",1);
+		run_instance(".."+ File.separator +"istanze"+ File.separator +"large_instances", "tipo_800_10000",1);
+		*/
 		
     	//small_instances_run();    	
     	//medium_instances_run();
@@ -91,7 +99,7 @@ public class GeneticAlgorithm {
 	}
     
     private static void log_data(String type_data, HashMap<String, ArrayList<Double>> tmp_list) throws IOException {
-    	File file = new File("C:\\Users\\user\\Desktop\\" + type_data);
+    	File file = new File( type_data);
 		BufferedWriter bf = new BufferedWriter( new FileWriter(file));
 		bf.close();
 		try {		
@@ -121,7 +129,7 @@ public class GeneticAlgorithm {
     }
  
 	public static void large_instaces_run() {
-		String dir_name="C:\\Users\\user\\Desktop\\istanze\\large_instances";
+		String dir_name=".."+ File.separator +"istanze"+ File.separator + "large_instances";
 		
 		run_instance(dir_name, "tipo_800_10000",10);
 		
@@ -129,7 +137,7 @@ public class GeneticAlgorithm {
 
 
 	public static void medium_instances_run() {
-		String dir_name="C:\\Users\\user\\Desktop\\istanze\\medium_instances";
+		String dir_name=".."+ File.separator +"istanze"+ File.separator + "medium_instances";
 		
 		//run_instance(dir_name, "tipo_100_500");
 		//run_instance(dir_name,"tipo_100_2000");
@@ -141,7 +149,7 @@ public class GeneticAlgorithm {
     
 	public static void small_instances_run() {
 		//String dir_name="C:\\Users\\user\\Desktop\\wvcp-instances\\small_instances";
-		String dir_name="C:\\Users\\user\\Desktop\\istanze\\small_instances";
+		String dir_name=".."+ File.separator +"istanze"+ File.separator +"small_instances";
 
 		run_instance(dir_name, "tipo_20_60",1);
 		run_instance(dir_name, "tipo_20_120",1);
@@ -152,14 +160,14 @@ public class GeneticAlgorithm {
 
 	public static void run_instance(String dir_name,String dir_base, int run) {
 		
-		File dir = new File(dir_name+"\\"+dir_base);
+		File dir = new File(dir_name+File.separator+dir_base);
 		String[] pathnames=dir.list();
 		int sum=0;
-		
+		System.out.println(dir_name+File.separator+dir_base+Arrays.toString(pathnames));
 		long tmp_=0;
 		for (String pathname : pathnames) {
 			
-		    ResultReadFile result= read_file(dir_name+"\\"+dir_base+"\\"+pathname);
+		    ResultReadFile result= read_file(dir_name+File.separator+dir_base+File.separator+pathname);
 		    int numero_nodi=result.getN();
 		    int[] vertex_weight=result.getM();
 		    int[][] matrix=result.getMatrix();
@@ -186,12 +194,12 @@ public class GeneticAlgorithm {
 
 	public static double  genetic_algorithm_files(String dir_name, String dir_base) {
 		
-		File dir = new File(dir_name+"\\"+dir_base);
+		File dir = new File(dir_name+File.separator+dir_base);
 		String[] pathnames=dir.list();
 		int sum=0;
 		for (String pathname : pathnames) {
 			
-		    ResultReadFile result= read_file(dir_name+"\\"+dir_base+"\\"+pathname);
+		    ResultReadFile result= read_file(dir_name+File.separator+dir_base+File.separator+pathname);
 		    int numero_nodi=result.getN();
 		    int[] vertex_weight=result.getM();
 		    int[][] matrix=result.getMatrix();
@@ -211,7 +219,7 @@ public class GeneticAlgorithm {
         	
 		} 
         catch (TypeSelectionException e) {
-        	System.out.println("Il type è invalido, deve essere tra questi (val a destra)");
+        	System.out.println("Il type e invalido, deve essere tra questi (val a destra)");
         	for(TypeSelection env : TypeSelection.values()){
         	    System.out.println(env.name() + " : " + env.get_label());
         	}

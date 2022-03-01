@@ -33,7 +33,7 @@ public class Population {
 	
 	}
 
-	//REPAIR POPULATION FLIPPO DEI BIT A CASO FINO A QUANDO NON é UNA SOLUZIONE VALIDA
+	//REPAIR POPULATION FLIPPO DEI BIT A CASO FINO A QUANDO NON e UNA SOLUZIONE VALIDA
 	public List<Individual> repair_population(List<Individual> population2,int[] weight) throws Exception {
 		for(Individual item : population2) {
 			repair_individual(item,weight);
@@ -214,7 +214,7 @@ public class Population {
 	}
 	//OPERATORE PERTURB
 	void pertub_solution(Population population,int[] weight) throws Exception {
-		//Prende le soluzioni migliori e le toglie, poca diversità
+		//Prende le soluzioni migliori e le toglie, poca diversita
     	Collections.sort(population.get_population(), new ComparatorIndividual());
     	for (int i=0;i<GeneticAlgorithm.PERTURB_SOLUTION;i++) {
     		Individual tmp=new Individual(population.random_initialize(),null,false);
@@ -235,7 +235,7 @@ public class Population {
 		for(Individual x : this.population) if (min.get_fitness()>x.get_fitness()){	min=x;}
 		return min;
 	}
-	//CaLCOLA LA DIVERSITà DELLA POPOLAZIONE
+	//CaLCOLA LA DIVERSITa DELLA POPOLAZIONE
 	public int get_diversity_population() {
 		int diversity=0;
 		for(int i=0;i<this.pop_size;i++) {
