@@ -61,8 +61,8 @@ public class GeneticAlgorithm {
     public static void main(String[] args) {
         
     	
-    	// IL PRIMO PARAMETRO è il PATH ALLE INSTANCE es istanze/small_instances
-    	// IL SECONDO PARAMETRO è il tipo di istanza
+    	// IL PRIMO PARAMETRO e il PATH ALLE INSTANCE es istanze/small_instances
+    	// IL SECONDO PARAMETRO e il tipo di istanza
     	
     	
     	run_instance(".."+ File.separator+"istanze"+ File.separator +"small_instances", "tipo_20_60",1);
