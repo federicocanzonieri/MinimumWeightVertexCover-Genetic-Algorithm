@@ -24,7 +24,7 @@ public class GeneticAlgorithm {
 	//PARAMETRI ALGORITMO
 	
 	
-	static final int THRESHOLD_INCEST_PREVENTING =2;
+	static final int THRESHOLD_INCEST_PREVENTING =5;
 	private static final boolean INCEST_PREVENTING = false;
 	private static final int LOCAL_MINIMA_THRESHOLD = 6;
 	static final int PERTURB_SOLUTION = 3;
@@ -34,7 +34,7 @@ public class GeneticAlgorithm {
 	static  int MUTATION_SIZE_START = 3;
 	public static double  MUTATION_PROBA=MUTATION_PROBA_START;
 	static  int MUTATION_SIZE = MUTATION_SIZE_START;
-	public static int     POP_SIZE = 15;
+	public static int     POP_SIZE = 100;
 	static 	int MUTATION_SIZE_BOOST = 4;
 	static  double MUTATION_PROB_BOOST=0.25;
 	
@@ -61,8 +61,12 @@ public class GeneticAlgorithm {
     public static void main(String[] args) {
         
     	
-    	System.out.println(System.getProperty("user.dir"));
-    	run_instance(".."+ File.separator +"istanze"+ File.separator +"small_instances", "tipo_20_60",1);
+    	// IL PRIMO PARAMETRO è il PATH ALLE INSTANCE es istanze/small_instances
+    	// IL SECONDO PARAMETRO è il tipo di istanza
+    	
+    	
+    	run_instance(".."+ File.separator+"istanze"+ File.separator +"small_instances", "tipo_20_60",1);
+    	
     	/*
     	run_instance(".."+ File.separator +"istanze"+ File.separator +"small_instances", "tipo_20_120",1);
 		run_instance(".."+ File.separator +"istanze"+ File.separator +"small_instances", "tipo_25_150",1);
@@ -91,8 +95,8 @@ public class GeneticAlgorithm {
     private static void print_parameter_value() {
     	System.out.println("POP_SIZE:"+POP_SIZE+", MT_PROB_START:"+MUTATION_PROBA_START+", MT_SIZE_START:"+MUTATION_SIZE_START+", CR_PROBA:"+CROSSOVER_PROBA+", TYPE_SELECTION:"+TYPE_SELECTION+", PERTURB_SOLUTION:"
     			+ PERTURB_SOLUTION+", LOCAL_MINIMA_THRESHOLD:"+LOCAL_MINIMA_THRESHOLD+", THRESHOLD_INCEST_PREVENTING:"+THRESHOLD_INCEST_PREVENTING
-    			+ ", INCEST_PREVENTING ACTIVE:"+INCEST_PREVENTING
-    			+ ", MUTATION_SIZE_BOOST:"+MUTATION_SIZE_BOOST+", MUTATION_PROB_BOOST "+MUTATION_PROB_BOOST
+    			+ ", INCEST_PREVENTING_ACTIVE:"+INCEST_PREVENTING
+    			+ ", MUTATION_SIZE_BOOST:"+MUTATION_SIZE_BOOST+", MUTATION_PROB_BOOST:"+MUTATION_PROB_BOOST
     			
     	);
 		
@@ -100,6 +104,7 @@ public class GeneticAlgorithm {
     
     private static void log_data(String type_data, HashMap<String, ArrayList<Double>> tmp_list) throws IOException {
     	File file = new File( type_data);
+    	System.out.println(type_data);
 		BufferedWriter bf = new BufferedWriter( new FileWriter(file));
 		bf.close();
 		try {		
@@ -139,9 +144,9 @@ public class GeneticAlgorithm {
 	public static void medium_instances_run() {
 		String dir_name=".."+ File.separator +"istanze"+ File.separator + "medium_instances";
 		
-		//run_instance(dir_name, "tipo_100_500");
-		//run_instance(dir_name,"tipo_100_2000");
-		//run_instance(dir_name,"tipo_200_750");
+		run_instance(dir_name, "tipo_100_500",1);
+		run_instance(dir_name,"tipo_100_2000",1);
+		run_instance(dir_name,"tipo_200_750",1);
 		run_instance(dir_name, "tipo_200_3000",1);
    	    	
 	}
@@ -357,7 +362,7 @@ public class GeneticAlgorithm {
     				local_minima_counter++;
     			}
     			else {
-    				//NON TOCCARE
+    				
     				local_minima_counter=0;
     				GeneticAlgorithm.MUTATION_PROBA = GeneticAlgorithm.MUTATION_PROBA_START;
         			MUTATION_SIZE = GeneticAlgorithm.MUTATION_SIZE_START;
@@ -367,7 +372,7 @@ public class GeneticAlgorithm {
     		}
     		
     		if(local_minima_counter==GeneticAlgorithm.LOCAL_MINIMA_THRESHOLD) {
-    			//NON TOCCARE
+    			
     			//GeneticAlgorithm.MUTATION_PROBA=0.55;
     			//MUTATION_SIZE = 5;
     			GeneticAlgorithm.MUTATION_PROBA = GeneticAlgorithm.MUTATION_PROB_BOOST;
